@@ -1,0 +1,17 @@
+{
+    "contents" : "#learning scraping data from Fangraphs for radar charts\n\nlibrary(XML)\n\nurl <- \"http://games.espn.go.com/ffl/boxscorefull?leagueId=74920&teamId=5&scoringPeriodId=15&seasonId=2014&view=scoringperiod&version=full\"\ndata <- readHTMLTable(url, stringsAsFactors = FALSE)\ndata[[1]] # select the first table",
+    "created" : 1440113093951.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2058509408",
+    "id" : "9A63D5AF",
+    "lastKnownWriteTime" : 1440113164,
+    "path" : "~/R work/baseballRadarCharts/dataScrape.R",
+    "project_path" : "dataScrape.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
