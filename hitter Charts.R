@@ -30,3 +30,15 @@ lapply(1:1, function(i) {
   radarchart(rbind(rep(1,1), rep(0,1), one.hitter[i,-1]), pdensity=c(0, 0, 100), 
              title=one.hitter[i, 1], maxmin=F, axistype=0, centerzero=T, vlabels=hit.labels, vlcex=1)
 })
+
+
+
+#scale data between 0 and 1
+scale.normal<-function(m){
+  (m - min(m))/(max(m)-min(m))
+}
+
+#inverse scale data between 0 and 1
+scale.inverse<-function(m){
+  (m - min(m))/(max(m)-min(m))
+}
