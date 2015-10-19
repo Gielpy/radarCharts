@@ -1,0 +1,17 @@
+{
+    "contents" : "#learning scraping data from Fangraphs for radar charts\n\nlibrary(XML)\nlibrary(httr)\n\nurl <- \"http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=c,34,35,37,40,111,199&season=2015&month=0&season1=&ind=0&team=0,ts&rost=&age=&filter=&players=0\"\ntables <- readHTMLTable(url)\nn.rows <- unlist(lapply(tables, function(t) dim(t)[1]))\nleaderboard<-data.frame(tables$LeaderBoard1_dg1_ctl00)\n\n\n#scale data between 0 and 1\nscale.normal<-function(m){\n  (m - min(m))/(max(m)-min(m))\n}\n\n#inverse scale data between 0 and 1\nscale.inverse<-function(m){\n  1-((m - min(m))/(max(m)-min(m)))\n}\n\n#remove the rankings column at the beginning of the data frame\nleaderboard$X. <- NULL\n\n#remove the % from the walk and strikeout columns\nleaderboard$BB. <- gsub(\" %\", \"\", leaderboard$BB.)\nleaderboard$K. <- gsub(\" %\", \"\", leaderboard$K.)\n\n#normalize the columns between 0 and 1\nleaderboard$BsR <- scale.normal(as.numeric(leaderboard$BsR))\nleaderboard$BB. <- scale.normal(as.numeric(leaderboard$BB.))\nleaderboard$K. <- scale.inverse(as.numeric(leaderboard$K.))\nleaderboard$OBP <- scale.normal(as.numeric(leaderboard$OBP))\nleaderboard$ISO <- scale.normal(as.numeric(leaderboard$ISO))\nleaderboard$Def <- scale.normal(as.numeric(leaderboard$Def))\n\n\nlibrary(rCharts)\nlibrary(fmsb)\n\n#pull one team from leaderboard for plotting\n  one.team<-leaderboard[1,]  #different number for each hitter. call hitters.sorted and find\n  \n  #provide labels for the radar chart\n  offense.labels =c(\"Walk Rate\", 'K Rate', 'OBP', 'ISO', 'Baserunning', 'Defense')\n  \n  #plot the radar chart for the team's offensive capabilities\n  lapply(1:1, function(i) { \n    radarchart(rbind(rep(1,1), rep(0,1), one.team[i,-1]), pdensity=c(0, 0, 100), \n               title=one.team[i, 1], maxmin=F, axistype=0, centerzero=T, vlabels=offense.labels, vlcex=1)\n  })",
+    "created" : 1444284080468.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3686139174",
+    "id" : "78678BA0",
+    "lastKnownWriteTime" : 1444099291,
+    "path" : "~/github/radarcharts/radarCharts/charts v3 scrape/fangraphsScrape.R",
+    "project_path" : "charts v3 scrape/fangraphsScrape.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

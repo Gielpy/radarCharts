@@ -1,0 +1,3 @@
+pitcher.page.vsLefties <- ("http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=c,29,31,44,45,47,34&season=2015&month=13&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0")
+
+pitcher.page.vsRighties <- ("http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=c,29,31,44,45,47,34&season=2015&month=14&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0")

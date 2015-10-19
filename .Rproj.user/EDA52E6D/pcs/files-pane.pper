@@ -1,0 +1,13 @@
+{
+    "path" : "~/github/radarcharts/radarCharts/charts v3 scrape",
+    "sortOrder" : [
+        {
+            "ascending" : false,
+            "columnIndex" : 4
+        },
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

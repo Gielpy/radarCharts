@@ -1,0 +1,17 @@
+{
+    "contents" : "#Team Pitching Data (vs. Righties)\n\nlibrary(XML)\nlibrary(httr)\n\n#pull the specific data from the url below\nurl <- \"http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=c,29,31,44,45,47,34&season=2015&month=14&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0\"\ntables <- readHTMLTable(url)\nn.rows <- unlist(lapply(tables, function(t) dim(t)[1]))\nleaderboard<-data.frame(tables$LeaderBoard1_dg1_ctl00)\n\n\n#scale data between 0 and 1\nscale.normal<-function(m){\n  (m - min(m))/(max(m)-min(m))\n}\n\n#inverse scale data between 0 and 1\nscale.inverse<-function(m){\n  1-((m - min(m))/(max(m)-min(m)))\n}\n\n#remove the rankings column at the beginning of the data frame\nleaderboard$X. <- NULL\n\n#remove the % from the walk and strikeout columns\nleaderboard$BB. <- gsub(\" %\", \"\", leaderboard$BB.)\nleaderboard$K. <- gsub(\" %\", \"\", leaderboard$K.)\n\n#normalize the columns between 0 and 1\nleaderboard$WHIP <- scale.normal(as.numeric(leaderboard$WHIP))\nleaderboard$BB. <- scale.inverse(as.numeric(leaderboard$BB.))\nleaderboard$K. <- scale.normal(as.numeric(leaderboard$K.))\nleaderboard$HR.9 <- scale.normal(as.numeric(leaderboard$HR.9))\nleaderboard$wOBA <- scale.normal(as.numeric(leaderboard$wOBA))\nleaderboard$FIP <- scale.normal(as.numeric(leaderboard$FIP))\n\n\nlibrary(rCharts)\nlibrary(fmsb)\n\n#pull one team from leaderboard for plotting\none.team<-leaderboard[22,]  #different number for each hitter. call hitters.sorted and find\n\n#provide labels for the radar chart\npitching.labels =c(\"HR/9\", 'WHIP', 'K%', 'BB%', 'wOBA', 'FIP')\n\n#plot the radar chart for the team's pitching capabilities\nlapply(1:1, function(i) { \n  radarchart(rbind(rep(1,1), rep(0,1), one.team[i,-1]), pdensity=c(0, 0, 100), \n             title=paste(one.team[i, 1], \"Team Pitching (vs. Righties)\"), maxmin=F, axistype=0, centerzero=T, vlabels=pitching.labels, vlcex=1)\n})",
+    "created" : 1444501711376.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "741916189",
+    "id" : "817E6D5",
+    "lastKnownWriteTime" : 1444524019,
+    "path" : "~/github/radarcharts/radarCharts/charts v3 scrape/PitchingVsRighties.R",
+    "project_path" : "charts v3 scrape/PitchingVsRighties.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

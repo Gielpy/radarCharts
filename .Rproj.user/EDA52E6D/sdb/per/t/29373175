@@ -1,0 +1,18 @@
+{
+    "contents" : "pitcher.page.vsLefties <- (\"http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=c,29,31,44,45,47,34&season=2015&month=13&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0\")\n\npitcher.page.vsRighties <- (\"http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=c,29,31,44,45,47,34&season=2015&month=14&season1=2015&ind=0&team=0,ts&rost=0&age=0&filter=&players=0\")",
+    "created" : 1444284540991.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "549185956",
+    "id" : "29373175",
+    "lastKnownWriteTime" : 1444284595,
+    "path" : "~/github/radarcharts/radarCharts/charts v3 scrape/urls.R",
+    "project_path" : "charts v3 scrape/urls.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
